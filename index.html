@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#211812">
+  <meta name="description" content="KRYVON Studios creates unforgettable worlds and legendary games built to last.">
+  <title>KRYVON Studios — Create the Unforgettable</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #211812;
+      --bg-deep: #17110d;
+      --panel: #2d2119;
+      --cream: #f2e7d2;
+      --muted: #b7a994;
+      --line: rgba(242, 231, 210, .16);
+      --accent: #d6b98a;
+      --max: 1160px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--cream);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    .wrap { width: min(var(--max), calc(100% - 48px)); margin-inline: auto; }
+    .topbar {
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(33, 24, 18, .92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: inline-flex; align-items: center; gap: 12px; font-size: .9rem; font-weight: 850; letter-spacing: .18em; }
+    .brand-mark {
+      width: 38px; height: 38px; display: grid; place-items: center;
+      border: 1px solid rgba(242,231,210,.55); border-radius: 50%;
+      font-size: 1.12rem; letter-spacing: -.08em; font-weight: 900;
+      position: relative;
+    }
+    .brand-mark::after { content: ""; position: absolute; width: 8px; height: 8px; right: -2px; top: 1px; border-radius: 50%; background: var(--accent); }
+    .nav-links { display: flex; align-items: center; gap: 30px; color: var(--muted); font-size: .9rem; }
+    .nav-links a:hover, .nav-links a:focus-visible { color: var(--cream); }
+    .nav-cta, .button {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      min-height: 46px; padding: 0 19px; border-radius: 999px;
+      border: 1px solid var(--cream); color: var(--bg-deep); background: var(--cream);
+      font-size: .88rem; font-weight: 750; transition: transform .2s, background .2s, color .2s;
+    }
+    .nav-cta:hover, .button:hover { transform: translateY(-2px); background: var(--accent); }
+    .menu-toggle { display: none; border: 1px solid var(--line); background: transparent; color: var(--cream); border-radius: 10px; padding: 9px 12px; font: inherit; }
+    .hero { min-height: 680px; display: grid; align-items: center; position: relative; overflow: hidden; }
+    .hero::before {
+      content: ""; position: absolute; width: 580px; height: 580px; right: -100px; top: 40px;
+      border: 1px solid rgba(214,185,138,.16); border-radius: 50%;
+      box-shadow: 0 0 0 55px rgba(214,185,138,.025), 0 0 0 110px rgba(214,185,138,.02);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: "K"; position: absolute; right: 5%; top: 48%; transform: translateY(-50%);
+      font-size: clamp(18rem, 38vw, 34rem); line-height: .8; font-weight: 950;
+      letter-spacing: -.13em; color: rgba(242,231,210,.035); pointer-events: none;
+    }
+    .hero-content { max-width: 760px; padding: 100px 0 110px; position: relative; z-index: 1; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 10px; color: var(--accent); font-size: .76rem; font-weight: 800; text-transform: uppercase; letter-spacing: .2em; }
+    .eyebrow::before { content: ""; width: 24px; height: 1px; background: currentColor; }
+    h1 { margin: 24px 0 22px; max-width: 850px; font-size: clamp(3.5rem, 9vw, 7.8rem); line-height: .91; letter-spacing: -.075em; font-weight: 850; }
+    h1 span { color: var(--accent); }
+    .hero-copy { max-width: 550px; color: var(--muted); font-size: clamp(1rem, 1.6vw, 1.18rem); margin: 0 0 32px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .button.secondary { color: var(--cream); background: transparent; border-color: var(--line); }
+    .button.secondary:hover { border-color: var(--cream); background: rgba(242,231,210,.06); }
+    .hero-note { margin-top: 64px; display: flex; align-items: center; gap: 12px; color: var(--muted); font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; }
+    .hero-note .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+    section { padding: 110px 0; }
+    .section-head { display: flex; justify-content: space-between; align-items: end; gap: 30px; margin-bottom: 42px; }
+    .section-kicker { color: var(--accent); font-size: .75rem; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; }
+    h2 { font-size: clamp(2.4rem, 5vw, 4.6rem); letter-spacing: -.065em; line-height: .98; margin: 14px 0 0; }
+    .section-intro { max-width: 390px; color: var(--muted); margin: 0; }
+    .mission { background: var(--bg-deep); border-block: 1px solid var(--line); }
+    .mission-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 90px; align-items: start; }
+    .mission-statement { font-size: clamp(1.55rem, 3.4vw, 2.65rem); line-height: 1.25; letter-spacing: -.04em; margin: 0; }
+    .mission-statement em { color: var(--accent); font-style: normal; }
+    .mission-detail { color: var(--muted); max-width: 580px; margin: 24px 0 0; }
+    .values { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 48px; }
+    .value { padding: 22px; border: 1px solid var(--line); border-radius: 16px; }
+    .value-number { color: var(--accent); font-size: .75rem; letter-spacing: .12em; }
+    .value h3 { margin: 14px 0 8px; font-size: 1rem; }
+    .value p { margin: 0; color: var(--muted); font-size: .9rem; }
+    .games { background: var(--bg); }
+    .game-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    .game-card { min-height: 300px; padding: 28px; border: 1px solid var(--line); border-radius: 18px; background: linear-gradient(145deg, rgba(214,185,138,.07), transparent 65%), var(--panel); display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; position: relative; }
+    .game-card::after { content: ""; position: absolute; width: 190px; height: 190px; border: 1px solid rgba(214,185,138,.16); border-radius: 50%; right: -50px; top: -65px; box-shadow: 0 0 0 25px rgba(214,185,138,.025), 0 0 0 50px rgba(214,185,138,.02); }
+    .game-top, .game-bottom { position: relative; z-index: 1; }
+    .status { display: inline-flex; padding: 6px 10px; border: 1px solid var(--line); border-radius: 999px; color: var(--accent); font-size: .7rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    .game-index { color: rgba(242,231,210,.35); font-size: .78rem; letter-spacing: .15em; }
+    .game-card h3 { font-size: clamp(1.8rem, 4vw, 2.8rem); line-height: 1; letter-spacing: -.055em; margin: 22px 0 10px; }
+    .game-card p { max-width: 370px; color: var(--muted); margin: 0; }
+    .game-bottom { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 45px; color: var(--muted); font-size: .82rem; }
+    .arrow { color: var(--cream); font-size: 1.4rem; }
+    .contact { background: var(--accent); color: var(--bg-deep); padding: 78px 0; }
+    .contact-inner { display: flex; align-items: center; justify-content: space-between; gap: 28px; }
+    .contact .section-kicker { color: #5b432d; }
+    .contact h2 { max-width: 680px; }
+    .contact .button { color: var(--cream); background: var(--bg-deep); border-color: var(--bg-deep); white-space: nowrap; }
+    .contact .button:hover { background: #3a2a20; }
+    footer { padding: 30px 0; background: var(--bg-deep); }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .copyright, .footer-links { color: var(--muted); font-size: .78rem; }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a:hover { color: var(--cream); }
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+    @media (max-width: 760px) {
+      .wrap { width: min(var(--max), calc(100% - 36px)); }
+      .nav { min-height: 70px; }
+      .menu-toggle { display: inline-flex; }
+      .nav-links { display: none; position: absolute; top: 69px; left: 0; right: 0; padding: 18px 24px 24px; flex-direction: column; align-items: stretch; gap: 0; background: var(--bg-deep); border-bottom: 1px solid var(--line); }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 13px 0; }
+      .nav-cta { display: none; }
+      .hero { min-height: 620px; }
+      .hero::before { width: 380px; height: 380px; right: -210px; top: 100px; }
+      .hero::after { right: -5%; top: 55%; font-size: 19rem; }
+      .hero-content { padding: 84px 0; }
+      section { padding: 78px 0; }
+      .section-head, .contact-inner { align-items: flex-start; flex-direction: column; }
+      .mission-grid { grid-template-columns: 1fr; gap: 26px; }
+      .values { grid-template-columns: 1fr; }
+      .game-grid { grid-template-columns: 1fr; }
+      .game-card { min-height: 270px; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap nav">
+      <a class="brand" href="#home" aria-label="KRYVON Studios home">
+        <span class="brand-mark" aria-hidden="true">K</span>
+        <span>KRYVON <span style="font-weight:500; letter-spacing:.12em">STUDIOS</span></span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks">Menu</button>
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a href="#mission">Our mission</a>
+        <a href="#games">Games</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="nav-cta" href="#games">Explore our vision <span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="wrap">
+        <div class="hero-content reveal">
+          <div class="eyebrow">Independent game studio</div>
+          <h1>Make it<br><span>unforgettable.</span></h1>
+          <p class="hero-copy">We create worlds worth getting lost in, stories worth carrying with you, and games that stay with you long after the screen goes dark.</p>
+          <div class="hero-actions">
+            <a class="button" href="#games">Discover our games <span aria-hidden="true">↗</span></a>
+            <a class="button secondary" href="#mission">What we believe</a>
+          </div>
+          <div class="hero-note"><span class="dot" aria-hidden="true"></span> Built with imagination. Made to last.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mission" id="mission">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-kicker">The KRYVON mission</div>
+            <h2>Not just games.<br>Legacies.</h2>
+          </div>
+          <p class="section-intro">The best games become part of people's lives. They bring friends together, inspire creativity, and leave memories that last for years.</p>
+        </div>
+        <div class="mission-grid reveal">
+          <p class="mission-statement">We aim to create <em>legendary experiences</em> that stand the test of time.</p>
+          <div>
+            <p class="mission-detail">Every world begins with an idea. We want to turn those ideas into unforgettable adventures—with thoughtful design, bold imagination, and a respect for the players who bring them to life.</p>
+            <p class="mission-detail">Our goal is simple: make games people don't just play, but remember.</p>
+          </div>
+        </div>
+        <div class="values reveal">
+          <article class="value"><div class="value-number">01 / IMAGINATION</div><h3>Build beyond the expected.</h3><p>Explore fresh ideas and create worlds that invite discovery.</p></article>
+          <article class="value"><div class="value-number">02 / CRAFT</div><h3>Make every detail count.</h3><p>Thoughtful mechanics, meaningful stories, and memorable moments.</p></article>
+          <article class="value"><div class="value-number">03 / LEGACY</div><h3>Create what lasts.</h3><p>Build experiences players will want to return to and share.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="games" id="games">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-kicker">What we're creating</div>
+            <h2>Worlds to come.</h2>
+          </div>
+          <p class="section-intro">Every great journey starts somewhere. These spaces are reserved for the worlds KRYVON will bring to life.</p>
+        </div>
+        <div class="game-grid">
+          <article class="game-card reveal">
+            <div class="game-top"><span class="status">In development</span><div class="game-index" style="margin-top:22px">PROJECT 001</div><h3>Your next<br>obsession.</h3><p>A new world is taking shape. More details will be revealed when the time is right.</p></div>
+            <div class="game-bottom"><span>Title to be announced</span><span class="arrow" aria-hidden="true">↗</span></div>
+          </article>
+          <article class="game-card reveal">
+            <div class="game-top"><span class="status">On the horizon</span><div class="game-index" style="margin-top:22px">PROJECT 002</div><h3>Something<br>legendary.</h3><p>Another idea. Another universe. Another chance to make something unforgettable.</p></div>
+            <div class="game-bottom"><span>More information soon</span><span class="arrow" aria-hidden="true">↗</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="wrap contact-inner reveal">
+        <div>
+          <div class="section-kicker">The story starts here</div>
+          <h2>Follow along.<br>The future is being built.</h2>
+        </div>
+        <a class="button" href="mailto:hello@kryvon.com">Get in touch <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <a class="brand" href="#home"><span class="brand-mark" aria-hidden="true">K</span><span>KRYVON STUDIOS</span></a>
+      <div class="copyright">© <span id="year"></span> KRYVON Studios. Create the unforgettable.</div>
+      <div class="footer-links"><a href="#mission">Mission</a><a href="#games">Games</a><a href="#home">Back to top ↑</a></div>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.textContent = isOpen ? 'Close' : 'Menu';
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.textContent = 'Menu';
+      });
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const revealItems = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      revealItems.forEach(item => observer.observe(item));
+    } else {
+      revealItems.forEach(item => item.classList.add('visible'));
+    }
+  </script>
+</body>
+</html>
